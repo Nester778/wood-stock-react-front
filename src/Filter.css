@@ -1,0 +1,24 @@
+.filter-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.price-inputs {
+    display: flex;
+}
+
+.input-group {
+    margin-right: 10px;
+}

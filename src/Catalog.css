@@ -1,0 +1,169 @@
+#img-card {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#img-card-wrapper {
+    height: 255px;
+    overflow: hidden;
+}
+
+#filter-btn {
+    display: none;
+}
+
+#mainNavbar {
+    margin-bottom: 1em;
+}
+
+.m-top {
+    margin-top: 20px;
+}
+
+.checkbox {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.checkbox-input {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+}
+
+.checkbox-label {
+    padding-left: 25px;
+    font-size: 1rem;
+    color: #444;
+    cursor: pointer;
+}
+
+.checkbox-label:before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    z-index: 1;
+    transition: background .1s linear, border .1s linear;
+}
+
+.checkbox-label:after {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url("check.svg") no-repeat;
+    background-size: 11px 11px;
+    opacity: 0;
+    position: absolute;
+    top: 6px;
+    left: 3px;
+    z-index: 2;
+    transition: opacity .1s linear;
+}
+
+.checkbox-input:checked+.checkbox-label:before {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.checkbox-input:checked+.checkbox-label:after {
+    opacity: 1;
+}
+
+
+.color {
+    background-color: #28a745;
+    color: #fff;
+}
+
+
+.irs .irs-handle {
+    border-color: #28a745 !important;
+}
+
+.irs .irs-bar,
+.irs .irs-from,
+.irs .irs-to,
+.irs .irs-single {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="range"] {
+    appearance: initial;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #28a745;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -5px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-style {
+    margin-top: 15px;
+}
+
+
+label input {
+    display: none;
+    /* <--скрываем дефолтный чекбокс */
+}
+
+label span {
+    /* <-- стилизируем новый */
+    height: 12px;
+    width: 12px;
+    border: 1px solid gray;
+    display: inline-block;
+    position: relative;
+    background-color: #FFF;
+    border-radius: 2px;
+    padding: 3px;
+}
+
+
+@media (max-width: 991px) {
+    #filter {
+        display: none;
+    }
+
+    #filter-btn {
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    .card-size {
+        max-height: 100%;
+    }
+}

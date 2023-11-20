@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 1.2em;
+}
+
+.navbar-color {
+  background-color: #fff;
+}
+
+.color {
+  background-color: #248232;
+  color: #fff;
+}
+
+.item {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.scrolled {
+  background-color: #fff;
+  transition: background-color 300ms;
+  border-bottom: #248232 solid 3px;
+}
+
+#register-form {
+  background-color: #fff;
+  padding: 10px 20px 20px 20px;
+  border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+  #mainNavbar {
+    background-color: #fff;
+    border-bottom: #248232 solid 3px;
+  }
+
+  .item {
+    display: flex;
+    justify-content: flex-start;
+  }
+}

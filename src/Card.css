@@ -1,0 +1,42 @@
+#img-card {
+
+    width: 100%;
+    object-fit: cover;
+
+}
+
+#img-card-wrapper {
+    height: 270px !important;
+    overflow: hidden;
+}
+
+.border-card {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+.font {
+    font-size: 32px;
+}
+
+.text {
+    padding-left: 10px;
+    display: inline-block;
+}
+
+.difficult {
+    padding-top: 5px;
+}
+
+.cont {
+    position: relative;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    padding: 10px;
+}

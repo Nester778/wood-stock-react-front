@@ -1,0 +1,72 @@
+.centered-container {
+    max-width: 45%;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.dropzone {
+    border: 2px dashed #cccccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.selected-images {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    max-height: 220px;
+    /* Фиксированная высота контейнера с изображениями */
+    overflow: auto;
+    /* Добавление скролла при необходимости */
+}
+
+.image-container {
+    position: relative;
+    margin: 10px;
+    width: 100px;
+    /* Фиксированная ширина контейнера */
+    height: 100px;
+    /* Фиксированная высота контейнера */
+    overflow: hidden;
+    border-radius: 8px;
+    /* Закругленные углы */
+    transition: transform 0.3s ease-in-out;
+    /* Анимация увеличения */
+}
+
+.image-container:hover {
+    transform: scale(1.1);
+    /* Увеличение при наведении */
+}
+
+.image-preview {
+    width: 100%;
+    /* Заполнение 100% ширины контейнера */
+    height: 100%;
+    /* Заполнение 100% высоты контейнера */
+    object-fit: cover;
+    /* Обрезка изображения с сохранением пропорций */
+    border-radius: 8px;
+    /* Закругленные углы */
+}
+
+.remove-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #06bd06;
+    /* Зеленый цвет круга */
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    /* Белый цвет креста */
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

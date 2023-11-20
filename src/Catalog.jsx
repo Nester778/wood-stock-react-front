@@ -20,7 +20,7 @@ export default function Catalog() {
   useEffect(() => {
     setLoading(true);
 
-    axios.get('http://www.nester.website/catalog/', { params: filter })
+    axios.get('https://www.nester.website/catalog', { params: filter })
       .then(response => {
         setImages(response.data);
         setLoading(false);

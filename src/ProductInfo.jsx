@@ -12,7 +12,7 @@ export default function ProductInfo() {
 
     useEffect(() => {
         // Запрос к серверу для получения информации о товаре по id
-        axios.get(`http://www.nester.website/products/${id}`)
+        axios.get(`https://www.nester.website/products/${id}`)
             .then(response => {
                 setProduct(response.data);
             })
@@ -23,7 +23,7 @@ export default function ProductInfo() {
 
     const handleDeleteProduct = async () => {
         try {
-            const response = await axios.delete(`http://www.nester.website/products/${id}`);
+            const response = await axios.delete(`https://www.nester.website/products/${id}`);
             console.log(response.data);
             navigate('/catalog');
         } catch (error) {

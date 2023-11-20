@@ -39,7 +39,7 @@ export default function CreateProd() {
         formData.append('productCoating', productCoating);
 
         try {
-            await axios.post('http://www.nester.website/upload', formData, {
+            await axios.post('https://www.nester.website/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

@@ -44,7 +44,9 @@ export default function Catalog() {
         <div className="col-12 col-lg-8">
           <div className="container py-3">
             {loading ? ( // Если загружается, отобразить надпись загрузки
-              <p>Loading...</p>
+              <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             ) : (
               <div className="row">
                 {images.map((image, index) => (

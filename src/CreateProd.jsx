@@ -26,6 +26,18 @@ export default function CreateProd() {
         updatedImages.splice(index, 1);
         setSelectedImages(updatedImages);
     };
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+    };
 
     const uploadImages = async () => {
         const formData = new FormData();
@@ -74,51 +86,88 @@ export default function CreateProd() {
                     </div>
                 </div>
 
-                <div className="form-container">
-                    <label htmlFor="productName">Product name:</label>
-                    <input
-                        type="text"
-                        id="productName"
-                        value={productName}
-                        onChange={(e) => setProductName(e.target.value)}
-                        className="form-control"
-                    />
-
-                    <label htmlFor="productPrice">Price:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">$</span>
-                        <input onChange={(e) => setProductPrice(e.target.value)} id="productPrice"
-                            value={productPrice} type='text' pattern="\d*" class="form-control" aria-label="Amount (to the nearest dollar)" />
-                        <span class="input-group-text">.00</span>
+                <div className={`row g-3 ${validated ? 'was-validated' : ''}`} noValidate onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="productName" className="form-label">Product name:</label>
+                        <input
+                            type="text"
+                            id="productName"
+                            value={productName}
+                            onChange={(e) => setProductName(e.target.value)}
+                            className={`form-control ${validated && !productName ? 'is-invalid' : ''}`}
+                            required
+                        />
+                        <div className="invalid-feedback">
+                            Please provide a product name.
+                        </div>
                     </div>
-                    <label htmlFor="productPrice">Material:</label>
-                    <select value={productMaterial} onChange={(e) => setProductMaterial(e.target.value)} class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="Wood" selected>Wood</option>
-                        <option value="Metal">Metal</option>
-                        <option value="Plastic">Plastic</option>
-                    </select>
 
-                    <label htmlFor="productPrice">Coating:</label>
-                    <select value={productCoating} onChange={(e) => setProductCoating(e.target.value)} class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="Paint" selected>Paint</option>
-                        <option value="Varnish">Varnish</option>
-                        <option value="Film">Film</option>
-                    </select>
+                    <div>
+                        <label htmlFor="productPrice" className="form-label">Price:</label>
+                        <div className="input-group mb-3">
+                            <span className="input-group-text">$</span>
+                            <input
+                                type="text"
+                                id="productPrice"
+                                value={productPrice}
+                                onChange={(e) => setProductPrice(e.target.value)}
+                                className={`form-control ${validated && !productPrice ? 'is-invalid' : ''}`}
+                                aria-label="Amount (to the nearest dollar)"
+                                required
+                            />
+                            <span className="input-group-text">.00</span>
+                            <div className="invalid-feedback">
+                                Please provide a valid price.
+                            </div>
+                        </div>
+                    </div>
 
-                    <label htmlFor="productDescription">Description:</label>
-                    <textarea
-                        id="productDescription"
-                        value={productDescription}
-                        onChange={(e) => setProductDescription(e.target.value)}
-                        className="form-control"
-                    ></textarea>
+                    <div className="col-6">
+                        <label htmlFor="productMaterial" className="form-label">Material:</label>
+                        <select
+                            value={productMaterial}
+                            onChange={(e) => setProductMaterial(e.target.value)}
+                            className="form-select"
+                            aria-label="Default select example"
+                        >
+                            <option value="Wood">Wood</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Plastic">Plastic</option>
+                        </select>
+                    </div>
+
+                    <div className="col-6">
+                        <label htmlFor="productCoating" className="form-label">Coating:</label>
+                        <select
+                            value={productCoating}
+                            onChange={(e) => setProductCoating(e.target.value)}
+                            className="form-select"
+                            aria-label="Default select example"
+                        >
+                            <option value="Paint">Paint</option>
+                            <option value="Varnish">Varnish</option>
+                            <option value="Film">Film</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="productDescription" className="form-label">Description:</label>
+                        <textarea
+                            id="productDescription"
+                            value={productDescription}
+                            onChange={(e) => setProductDescription(e.target.value)}
+                            className={`form-control ${validated && !productDescription ? 'is-invalid' : ''}`}
+                            required
+                        ></textarea>
+                        <div className="invalid-feedback">
+                            Please provide a product description.
+                        </div>
+                    </div>
+
+                    <div>
+                        <button onClick={uploadImages} className="btn btn-success" type="submit">Submit</button>
+                    </div>
                 </div>
-
-                <button onClick={uploadImages} className="btn btn-success my-3">
-                    Create
-                </button>
             </div>
         </div>
     );

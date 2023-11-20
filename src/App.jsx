@@ -12,7 +12,7 @@ import ProductInfo from './ProductInfo'
 function App() {
 
   return (
-    <Router basename='/wood-stock-react-front'>
+    <Router>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a href="/" className="navbar-brand px-3">Wood<img className="logo" src={logo} alt="" />Stock</a>

@@ -25,7 +25,7 @@ function App() {
                 <a href="/" className="nav-link">Home</a>
               </li>
               <li className="nav-item">
-                <a href="/wood-stock-react-front/catalog" className="nav-link">Catalog</a>
+                <a href="/catalog" className="nav-link">Catalog</a>
               </li>
               <li className="nav-item">
                 <a href="/wood-stock-react-front/new" className="nav-link">New Product</a>

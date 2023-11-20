@@ -36,10 +36,10 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/new" element={<CreateProd />} />
-        <Route path="/product/:id" element={<ProductInfo />} />
+        <Route path="/wood-stock-react-front/" element={<Home />} />
+        <Route path="/wood-stock-react-front/catalog" element={<Catalog />} />
+        <Route path="/wood-stock-react-front/new" element={<CreateProd />} />
+        <Route path="/wood-stock-react-front/product/:id" element={<ProductInfo />} />
       </Routes>
     </Router>
   )

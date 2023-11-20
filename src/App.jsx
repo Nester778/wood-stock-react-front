@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import './App.css';
 import logo from "./assets/logo.svg";
@@ -12,7 +12,7 @@ import ProductInfo from './ProductInfo'
 function App() {
 
   return (
-    <Router basename='/'>
+    <Router>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a href="/" className="navbar-brand px-3">Wood<img className="logo" src={logo} alt="" />Stock</a>

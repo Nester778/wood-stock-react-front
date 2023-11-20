@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import "./Card.css"
 
 export default function Card(prod) {
-    let link = "/product"
     return (
         <div className="col-12 col-md-6 col-lg-4 my-3">
             <div className="food-card">

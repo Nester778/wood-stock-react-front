@@ -28,6 +28,31 @@ export default function CreateProd() {
     };
     const [validated, setValidated] = useState(false);
 
+    const uploadImages = async () => {
+        const formData = new FormData();
+        selectedImages.forEach((image) => {
+            formData.append('images', image);
+        });
+        if (productName.length > 0 && productPrice.length > 0 && !isNaN(productPrice) && productDescription.length > 0) {
+            formData.append('productName', productName);
+            formData.append('productPrice', productPrice);
+            formData.append('productDescription', productDescription);
+            formData.append('productMaterial', productMaterial);
+            formData.append('productCoating', productCoating);
+
+            try {
+                await axios.post('https://www.nester.website/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+                navigate('/catalog');
+                console.log('Product data and images uploaded successfully');
+            } catch (error) {
+                console.error('Error uploading product data and images:', error);
+            }
+        }
+    };
     const handleSubmit = (event) => {
         const form = event.currentTarget;
 
@@ -37,30 +62,7 @@ export default function CreateProd() {
         }
 
         setValidated(true);
-    };
-
-    const uploadImages = async () => {
-        const formData = new FormData();
-        selectedImages.forEach((image) => {
-            formData.append('images', image);
-        });
-        formData.append('productName', productName);
-        formData.append('productPrice', productPrice);
-        formData.append('productDescription', productDescription);
-        formData.append('productMaterial', productMaterial);
-        formData.append('productCoating', productCoating);
-
-        try {
-            await axios.post('https://www.nester.website/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-            navigate('/catalog');
-            console.log('Product data and images uploaded successfully');
-        } catch (error) {
-            console.error('Error uploading product data and images:', error);
-        }
+        uploadImages();
     };
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -86,7 +88,7 @@ export default function CreateProd() {
                     </div>
                 </div>
 
-                <div className={`row g-3 ${validated ? 'was-validated' : ''}`} noValidate onSubmit={handleSubmit}>
+                <div className={`row g-3 ${validated ? 'was-validated' : ''}`} noValidate >
                     <div>
                         <label htmlFor="productName" className="form-label">Product name:</label>
                         <input
@@ -165,7 +167,7 @@ export default function CreateProd() {
                     </div>
 
                     <div>
-                        <button onClick={uploadImages} className="btn btn-success" type="submit">Submit</button>
+                        <button onClick={handleSubmit} className="btn btn-success" type="submit">Submit</button>
                     </div>
                 </div>
             </div>

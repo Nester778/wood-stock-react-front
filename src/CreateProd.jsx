@@ -88,7 +88,7 @@ export default function CreateProd() {
                     <div class="input-group mb-3">
                         <span class="input-group-text">$</span>
                         <input onChange={(e) => setProductPrice(e.target.value)} id="productPrice"
-                            value={productPrice} type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+                            value={productPrice} type='numder' class="form-control" aria-label="Amount (to the nearest dollar)" />
                         <span class="input-group-text">.00</span>
                     </div>
                     <label htmlFor="productPrice">Material:</label>

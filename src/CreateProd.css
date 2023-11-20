@@ -70,3 +70,11 @@
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 767px) {
+    .centered-container {
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #ccc;
+    }
+}

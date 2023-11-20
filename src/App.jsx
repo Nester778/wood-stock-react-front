@@ -22,13 +22,13 @@ function App() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a href="/" className="nav-link">Home</a>
+                <a href="/wood-stock-react-front" className="nav-link">Home</a>
               </li>
               <li className="nav-item">
-                <a href="/catalog" className="nav-link">Catalog</a>
+                <a href="/wood-stock-react-front/catalog" className="nav-link">Catalog</a>
               </li>
               <li className="nav-item">
-                <a href="/new" className="nav-link">New Product</a>
+                <a href="/wood-stock-react-front/new" className="nav-link">New Product</a>
               </li>
             </ul>
           </div>
@@ -36,7 +36,7 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/wood-stock-react-front/" element={<Home />} />
+        <Route path="/wood-stock-react-front" element={<Home />} />
         <Route path="/wood-stock-react-front/catalog" element={<Catalog />} />
         <Route path="/wood-stock-react-front/new" element={<CreateProd />} />
         <Route path="/wood-stock-react-front/product/:id" element={<ProductInfo />} />

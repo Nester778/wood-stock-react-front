@@ -14,7 +14,7 @@ export default function Card(prod) {
                         />
                     </div>
                     <div className="card-body">
-                        <Link to={`/product/${prod.prod._id}`} className="card-title">
+                        <Link to={`/wood-stock-react-front/product/${prod.prod._id}`} className="card-title">
                             {prod.prod.Name}
                         </Link>
                         <p className="card-text">

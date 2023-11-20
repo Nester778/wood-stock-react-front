@@ -73,6 +73,7 @@
 
 @media (max-width: 767px) {
     .centered-container {
+        max-width: 100%;
         text-align: center;
         padding: 20px;
         border: 1px solid #ccc;

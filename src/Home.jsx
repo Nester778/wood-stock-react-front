@@ -36,9 +36,9 @@ function Home() {
           <div class="col-lg-6 p-0">
             <img className="img-fluid" src={advantages} alt="" />
           </div>
-          <div className="text-center col-lg-6 p-0">
-            <div id="headingGroup" className="text-black text-center my-3">
-              <h1>Advantages</h1>
+          <div className="col-lg-6 p-0">
+            <div id="headingGroup" className="text-black my-3">
+              <h1 className='text-center'>Advantages</h1>
               <ul className="mx-3">
                 <li>
                   <span>

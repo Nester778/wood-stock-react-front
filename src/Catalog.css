@@ -152,6 +152,32 @@ label span {
     padding: 3px;
 }
 
+.filter-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.price-inputs {
+    display: flex;
+}
+
+.input-group {
+    margin-right: 10px;
+}
+
 
 @media (max-width: 991px) {
     #filter {

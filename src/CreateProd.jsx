@@ -11,13 +11,18 @@ export default function CreateProd() {
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
-    const [productMaterial, setProductMaterial] = useState('');
-    const [productCoating, setProductCoating] = useState('');
+    const [productMaterial, setProductMaterial] = useState("Wood");
+    const [productCoating, setProductCoating] = useState("Paint");
+    const [validated, setValidated] = useState(false);
+    const [validatedNum, setValidatedNum] = useState(false);
+    const [validatedImg, setValidatedImg] = useState(true);
+
     const navigate = useNavigate();
 
     const onDrop = (acceptedFiles) => {
         const newImages = acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) }));
         setSelectedImages([...selectedImages, ...newImages]);
+        setValidatedImg(true)
     };
 
     const removeImage = (index, e) => {
@@ -25,15 +30,21 @@ export default function CreateProd() {
         const updatedImages = [...selectedImages];
         updatedImages.splice(index, 1);
         setSelectedImages(updatedImages);
+        if (selectedImages.length === 1) {
+            setValidatedImg(false)
+        }
     };
-    const [validated, setValidated] = useState(false);
 
     const uploadImages = async () => {
         const formData = new FormData();
         selectedImages.forEach((image) => {
             formData.append('images', image);
         });
-        if (productName.length > 0 && productPrice.length > 0 && !isNaN(productPrice) && productDescription.length > 0) {
+        if (selectedImages.length === 0) {
+            setValidatedImg(false)
+        }
+
+        if (selectedImages.length > 0 && productName.length > 0 && productPrice.length > 0 && !isNaN(productPrice)) {
             formData.append('productName', productName);
             formData.append('productPrice', productPrice);
             formData.append('productDescription', productDescription);
@@ -53,6 +64,13 @@ export default function CreateProd() {
             }
         }
     };
+    const numValid = (number) => {
+        if (!isNaN(number)) {
+            setProductPrice(number);
+            setValidatedNum(true);
+        }
+    }
+
     const handleSubmit = (event) => {
         const form = event.currentTarget;
 
@@ -73,9 +91,9 @@ export default function CreateProd() {
     return (
         <div className="container m-top d-flex align-items-center justify-content-center">
             <div className="centered-container">
-                <div {...getRootProps()} className="dropzone">
+                <div {...getRootProps()} className={`dropzone ${validatedImg ? "" : "failed-valid"}`}>
                     <input {...getInputProps()} />
-                    <p>Select images or drag them here.</p>
+                    <p>Select images or drag them here.{"(png, jpg)"}</p>
                     <div className="selected-images">
                         {selectedImages.map((image, index) => (
                             <div key={index} className="image-container">
@@ -107,17 +125,15 @@ export default function CreateProd() {
                     <div>
                         <label htmlFor="productPrice" className="form-label">Price:</label>
                         <div className="input-group mb-3">
-                            <span className="input-group-text">$</span>
                             <input
                                 type="text"
                                 id="productPrice"
                                 value={productPrice}
-                                onChange={(e) => setProductPrice(e.target.value)}
-                                className={`form-control ${validated && !productPrice ? 'is-invalid' : ''}`}
+                                onChange={(e) => numValid(e.target.value)}
+                                className={`form-control ${validatedNum && !productPrice ? 'is-invalid' : ''}`}
                                 aria-label="Amount (to the nearest dollar)"
                                 required
                             />
-                            <span className="input-group-text">.00</span>
                             <div className="invalid-feedback">
                                 Please provide a valid price.
                             </div>
@@ -158,7 +174,7 @@ export default function CreateProd() {
                             id="productDescription"
                             value={productDescription}
                             onChange={(e) => setProductDescription(e.target.value)}
-                            className={`form-control ${validated && !productDescription ? 'is-invalid' : ''}`}
+                            className={`form-control`}
                             required
                         ></textarea>
                         <div className="invalid-feedback">

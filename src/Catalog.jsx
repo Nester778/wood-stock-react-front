@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Card from './Card';
 import Filter from './Filter';
@@ -16,8 +16,12 @@ export default function Catalog() {
     material: '',
     search: '',
   });
-  const [maxPriceHook, setMaxPriceHook] = useState("");
-  const [minPriceHook, setMinPriceHook] = useState("");
+  const [valid, setValid] = useState(true);
+  const searchRef = useRef(null);
+  const maxPriceRef = useRef(null);
+  const minPriceRef = useRef(null);
+  const coatingRef = useRef(null);
+  const materialRef = useRef(null);
 
   useEffect(() => {
     setLoading(true);
@@ -31,28 +35,24 @@ export default function Catalog() {
         console.error('Error fetching images:', error);
         setLoading(false);
       });
+
   }, [filter]);
-  console.log(images);
-  const handleFilterChange = (filterType, e) => {
-    const value = e.target.value;
-    setFilter(prevFilter => ({ ...prevFilter, [filterType]: value }));
+
+
+  const handleFilterChange = () => {
+    let arr = ["search", "material", "coating", "maxPrice", "minPrice"]
+    let arrValue = [searchRef.current.value, materialRef.current.value, coatingRef.current.value, maxPriceRef.current.value, minPriceRef.current.value]
+    if (arrValue[3] >= arrValue[4]) {
+      setValid(true);
+      for (let i = 0; i < arr.length; i++) {
+        setFilter(prevFilter => ({ ...prevFilter, [arr[i]]: arrValue[i] }))
+      }
+    }
+    else {
+      setValid(false);
+    }
   };
 
-  const validMaxPrise = (filterType, e) => {
-    const value = e.target.value;
-    if (value >= minPriceHook && !isNaN(value)) {
-      setMaxPriceHook(value);
-      handleFilterChange(filterType, e);
-    }
-  }
-
-  const validMinPrise = (filterType, e) => {
-    const value = e.target.value;
-    if (value <= maxPriceHook && !isNaN(value)) {
-      setMinPriceHook(value);
-      handleFilterChange(filterType, e);
-    }
-  }
 
   return (
     <div className="container m-top">
@@ -62,6 +62,16 @@ export default function Catalog() {
             <h3>Filter</h3>
             <div className="filter-group">
               <div className="input-group row">
+                <div className="filter-group">
+                  <label htmlFor="search">Search:</label>
+                  <input
+                    type="text"
+                    id="search"
+                    className="form-control"
+                    placeholder="Enter search term"
+                    ref={searchRef}
+                  />
+                </div>
                 <div className="col-6">
                   <label htmlFor="minPrice">Min Price:</label>
                 </div>
@@ -74,20 +84,18 @@ export default function Catalog() {
                   <input
                     type="text"
                     id="minPrice"
-                    className="form-control"
+                    className={`form-control ${valid ? '' : 'failed-valid'}`}
                     placeholder="Min"
-                    onChange={(e) => validMinPrise('minPrice', e)}
-                    value={minPriceHook}
+                    ref={minPriceRef}
                   />
                 </div>
                 <div className="col-6">
                   <input
                     type="text"
                     id="maxPrice"
-                    className="form-control"
+                    className={`form-control ${valid ? '' : 'failed-valid'}`}
                     placeholder="Max"
-                    onChange={(e) => validMaxPrise('maxPrice', e)}
-                    value={maxPriceHook}
+                    ref={maxPriceRef}
                   />
                 </div>
 
@@ -99,7 +107,7 @@ export default function Catalog() {
               <select
                 id="coating"
                 className="form-select"
-                onChange={(e) => handleFilterChange('coating', e)}
+                ref={coatingRef}
               >
                 <option value="" selected>Any</option>
                 <option value="Paint">Paint</option>
@@ -113,25 +121,16 @@ export default function Catalog() {
               <select
                 id="material"
                 className="form-select"
-                onChange={(e) => handleFilterChange('material', e)}
+                ref={materialRef}
               >
                 <option value="" selected>Any</option>
                 <option value="Wood">Wood</option>
                 <option value="Metal">Metal</option>
                 <option value="Plastic">Plastic</option>
-                {/* Добавьте другие варианты материала */}
               </select>
             </div>
-
-            <div className="filter-group">
-              <label htmlFor="search">Search:</label>
-              <input
-                type="text"
-                id="search"
-                className="form-control"
-                placeholder="Enter search term"
-                onChange={(e) => handleFilterChange('search', e)}
-              />
+            <div>
+              <button onClick={handleFilterChange} className="btn btn-success" type="submit">Search</button>
             </div>
           </div>
         </div>

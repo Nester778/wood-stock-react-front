@@ -167,24 +167,19 @@ export default function CreateProd() {
                             <option value="Film">Film</option>
                         </select>
                     </div>
-
-                    <div>
-                        <label htmlFor="productDescription" className="form-label">Description:</label>
-                        <textarea
-                            id="productDescription"
-                            value={productDescription}
-                            onChange={(e) => setProductDescription(e.target.value)}
-                            className={`form-control`}
-                            required
-                        ></textarea>
-                        <div className="invalid-feedback">
-                            Please provide a product description.
-                        </div>
-                    </div>
-
-                    <div>
-                        <button onClick={handleSubmit} className="btn btn-success" type="submit">Submit</button>
-                    </div>
+                </div>
+                <div>
+                    <label htmlFor="productDescription" className="form-label">Description:</label>
+                    <textarea
+                        id="productDescription"
+                        value={productDescription}
+                        onChange={(e) => setProductDescription(e.target.value)}
+                        className={`form-control`}
+                        required
+                    ></textarea>
+                </div>
+                <div>
+                    <button onClick={handleSubmit} className="btn btn-success" type="submit">Submit</button>
                 </div>
             </div>
         </div>

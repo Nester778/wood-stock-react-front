@@ -42,10 +42,20 @@ export default function Catalog() {
   const handleFilterChange = () => {
     let arr = ["search", "material", "coating", "maxPrice", "minPrice"]
     let arrValue = [searchRef.current.value, materialRef.current.value, coatingRef.current.value, maxPriceRef.current.value, minPriceRef.current.value]
-    if (arrValue[3] >= arrValue[4]) {
-      setValid(true);
-      for (let i = 0; i < arr.length; i++) {
-        setFilter(prevFilter => ({ ...prevFilter, [arr[i]]: arrValue[i] }))
+    if (arrValue[3] >= arrValue[4] || arrValue[4] === '' || arrValue[3] === '') {
+      if (!isNaN(arrValue[4]) || arrValue[4] === '') {
+        if (!isNaN(arrValue[3]) || arrValue[3] === '') {
+          setValid(true);
+          for (let i = 0; i < arr.length; i++) {
+            setFilter(prevFilter => ({ ...prevFilter, [arr[i]]: arrValue[i] }))
+          }
+        }
+        else {
+          setValid(false);
+        }
+      }
+      else {
+        setValid(false);
       }
     }
     else {

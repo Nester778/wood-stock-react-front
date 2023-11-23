@@ -108,7 +108,7 @@ export default function CreateProd() {
 
                 <div className={`row g-3 ${validated ? 'was-validated' : ''}`} noValidate >
                     <div>
-                        <label htmlFor="productName" className="form-label">Product name:</label>
+                        <label htmlFor="productName" className="form-label my-3">Product name:</label>
                         <input
                             type="text"
                             id="productName"
@@ -124,14 +124,13 @@ export default function CreateProd() {
 
                     <div>
                         <label htmlFor="productPrice" className="form-label">Price:</label>
-                        <div className="input-group mb-3">
+                        <div className="mb-3">
                             <input
                                 type="text"
                                 id="productPrice"
                                 value={productPrice}
                                 onChange={(e) => numValid(e.target.value)}
                                 className={`form-control ${validatedNum && !productPrice ? 'is-invalid' : ''}`}
-                                aria-label="Amount (to the nearest dollar)"
                                 required
                             />
                             <div className="invalid-feedback">
@@ -169,7 +168,7 @@ export default function CreateProd() {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="productDescription" className="form-label">Description:</label>
+                    <label htmlFor="productDescription" className="form-label my-3">Description:</label>
                     <textarea
                         id="productDescription"
                         value={productDescription}
@@ -179,7 +178,7 @@ export default function CreateProd() {
                     ></textarea>
                 </div>
                 <div>
-                    <button onClick={handleSubmit} className="btn btn-success" type="submit">Submit</button>
+                    <button onClick={handleSubmit} className="btn btn-success my-3" type="submit">Submit</button>
                 </div>
             </div>
         </div>
